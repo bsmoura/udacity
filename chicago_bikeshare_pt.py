@@ -2,8 +2,6 @@
 
 # Começando com os imports
 import csv
-import matplotlib
-matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 # Vamos ler os dados como uma lista
