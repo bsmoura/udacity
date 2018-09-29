@@ -2,6 +2,8 @@
 
 # Começando com os imports
 import csv
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 # Vamos ler os dados como uma lista
@@ -52,20 +54,19 @@ input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 
-"""
-Função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem.
-      Argumentos:
-          data: Lista de dados original.
-          index: Índice da coluna que será adionada na lista de retorno.
-      Retorna:
-          Uma lista com os dados da coluna index da lista original.
-
-"""
 def column_to_list(data, index):
+    """
+    Função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem.
+        Argumentos:
+            data: Lista de dados original.
+            index: Índice da coluna que será adionada na lista de retorno.
+        Retorna:
+            Uma lista com os dados da coluna index da lista original.
+    """	 
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
-    for dt in data:
-        column_list.append(dt[index])
+    for item in data:
+        column_list.append(item[index])
         	
     return column_list
 
@@ -106,15 +107,14 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
 
-"""
-Função para contar os gêneros.
-      Argumentos:
-          data_list: Lista de dados original.
-      Retorna:
-          Uma lista com o total do gênero masculino e com o total do gênero feminino.
-
-"""
 def count_gender(data_list):
+    """
+    Função para contar os gêneros.
+        Argumentos:
+            data_list: Lista de dados original.
+        Retorna:
+            Uma lista com o total do gênero masculino e com o total do gênero feminino.
+    """	
     male = 0
     female = 0
 
@@ -142,15 +142,14 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 
-"""
-Função que conta e retorna o gênero mais frequente.
-      Argumentos:
-          data_list: lista de dados original.
-      Retorna:
-          Uma string "Male", caso o gênero masculino seja mais frequente, "Female", caso feminino seja mais frequente e "Equal" se forem iguais.
-
-"""
 def most_popular_gender(data_list):
+    """
+    Função que conta e retorna o gênero mais frequente.
+        Argumentos:
+            data_list: lista de dados original.
+        Retorna:
+            Uma string "Male", caso o gênero masculino seja mais frequente, "Female", caso feminino seja mais frequente e "Equal" se forem iguais.
+    """	
     answer = ""
     male, female = count_gender(data_list)
     if male == female:
@@ -197,7 +196,7 @@ for user_type in user_types_list:
         subscriber += 1
     elif user_type == "Customer":
         customer += 1
-    else:
+    elif user_type == "Dependent":
         dependent += 1
 
 quantity = [subscriber, customer, dependent]
@@ -238,13 +237,16 @@ mean_trip = 0.
 median_trip = 0.
 
 trip_duration_list_float = []
+sum_duration = 0.
 
 for duration in trip_duration_list:
     trip_duration_list_float.append(float(duration))
+    sum_duration += float(duration)   
     
 sorted_list = sorted(trip_duration_list_float)
 len_list = len(trip_duration_list_float)
 
+#calculo da mediana
 if len_list % 2 == 0:
     median_trip = (sorted_list[int(len_list/2 - 1)] + sorted_list[int(len_list/2)]) / 2  	
 else:
@@ -252,7 +254,7 @@ else:
 
 min_trip = sorted_list[0]
 max_trip = sorted_list[-1]
-mean_trip = sum(trip_duration_list_float)/len(trip_duration_list_float)
+mean_trip = sum_duration/len(trip_duration_list_float)
  	
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
 print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
@@ -299,16 +301,16 @@ input("Aperte Enter para continuar...")
 print("Você vai encarar o desafio? (yes ou no)")
 answer = "yes"
 
-"""
-Função de exemplo com anotações.
-      Argumentos:
-          param1: O primeiro parâmetro.
-          param2: O segundo parâmetro.
-      Retorna:
-          Uma lista de valores x.
-
-"""
 def count_items(column_list):
+    """
+    Função de exemplo com anotações.
+        Argumentos:
+            param1: O primeiro parâmetro.
+            param2: O segundo parâmetro.
+        Retorna:
+            Uma lista de valores x.
+    """
+
     print(len(column_list))	
     item_types = list(set(column_list))
     count_items = [len(column_list)]
